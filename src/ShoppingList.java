@@ -24,8 +24,16 @@ public class ShoppingList {
 			System.out.println();
 			String prompt = "Please type in the item you want: ";
 
-			String newItem = addToCart(scan, inventory, prompt);
-			shoppingCart.add(newItem);
+			String userInput;
+			System.out.println(prompt);
+			userInput = scan.nextLine();
+			
+			if (inventory.containsKey(userInput)) { 
+				System.out.println("Added " + userInput + ".");
+				shoppingCart.add(userInput);
+			} else {
+				System.out.println("Sorry, we don't have that in stock.");
+			}
 
 			System.out.println("Add another item? (y/n): "); // if yes, repeat loop
 			cont = scan.nextLine();
@@ -40,24 +48,10 @@ public class ShoppingList {
 		System.out.println("The lowest price is: $" + lowest(shoppingCart, inventory));
 
 		System.out.println("Goodbye!");
+		scan.close();
 
 	}
 
-	private static String addToCart(Scanner scan, HashMap<String, Double> inventory, String prompt) {
-		String userInput;
-		System.out.println(prompt);
-		userInput = scan.nextLine();
-
-		if (inventory.containsKey(userInput)) { 
-			System.out.println("Added " + userInput + ".");
-		} else {
-			System.out.println("Sorry, we don't have that in stock.");
-			addToCart(scan, inventory, prompt);
-		}
-
-		return userInput;
-
-	}
 
 	private static HashMap<String, Double> fillInventory(HashMap<String, Double> inventory) {
 		inventory.put("garlic", 1.99);
@@ -70,7 +64,6 @@ public class ShoppingList {
 		inventory.put("kobe beef", 39.99);
 
 		return inventory;
-
 	}
 
 	public static void displayInventory(HashMap<String, Double> inventory) {
