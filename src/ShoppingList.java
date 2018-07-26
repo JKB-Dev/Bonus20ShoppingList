@@ -48,7 +48,7 @@ public class ShoppingList {
 		System.out.println(prompt);
 		userInput = scan.nextLine();
 
-		if (inventory.containsKey(userInput)) { // equals ignore case?
+		if (inventory.containsKey(userInput)) { 
 			System.out.println("Added " + userInput + ".");
 		} else {
 			System.out.println("Sorry, we don't have that in stock.");
@@ -87,17 +87,12 @@ public class ShoppingList {
 	// average method
 	public static double average(ArrayList<String> shoppingCart, HashMap<String, Double> inventory) {
 		double average = 0.0;
-		double sum = 0;//the total price, added together
+		double sum = 0.0;//the total price, added together
 		int count = 0; //the number of individual items
 		for ( String item : shoppingCart ) {
-			
-			//sum get from the inventory,
-			//the "value" of the "key" in this case fruit!
 			sum += inventory.get(item);
 			count++;
-			
 		}
-		
 		average = sum/count;
 		return average;
 	}
@@ -124,7 +119,6 @@ public class ShoppingList {
 				lowest = inventory.get(item);
 			}
 		}
-		
 		return lowest;
 	}
 }
